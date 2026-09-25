@@ -111,7 +111,7 @@ body::before {
 
 /* ---------- booking ---------- */
 .book { padding-bottom: clamp(56px, 12vw, 96px); position: relative;
-  padding-top: clamp(10px, 3vw, 26px); }
+  padding-top: clamp(20px, 4vw, 40px); }
 .book::before {
   content: ''; position: absolute; left: 50%; top: -6%; transform: translateX(-50%);
   width: min(94%, 1100px); height: 62%; pointer-events: none;
@@ -244,6 +244,33 @@ body::before {
 }
 @media (prefers-reduced-motion: reduce) {
   .arch__pipe i { animation: none; opacity: .8; top: 45%; }
+}
+
+.shot {
+  position: relative; border-radius: 16px; overflow: hidden;
+  border: 1px solid var(--line); box-shadow: 0 26px 60px -28px rgba(0,0,0,.8);
+  opacity: 0; transform: translateY(26px) scale(.985);
+  transition: opacity .8s ease, transform .8s cubic-bezier(.22,.8,.3,1);
+  will-change: opacity, transform;
+}
+.shot.is-in { opacity: 1; transform: none; }
+.shot img { display: block; width: 100%; height: auto; }
+.shot__sheen {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0;
+  background: linear-gradient(105deg,
+    rgba(77,217,255,0) 38%, rgba(77,217,255,.16) 48%,
+    rgba(255,255,255,.22) 52%, rgba(77,217,255,0) 62%);
+  transform: translateX(-100%);
+}
+.shot.is-in .shot__sheen { animation: sheen 1.5s ease-out .55s 1 forwards; }
+@keyframes sheen {
+  0%   { transform: translateX(-100%); opacity: 0; }
+  18%  { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shot { opacity: 1; transform: none; transition: none; }
+  .shot__sheen { display: none; }
 }
 
 /* ---------- reporting console (recreated, not a screenshot) ---------- */
@@ -535,83 +562,6 @@ a:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
     </div>
   </section>
 
-  <section class="book shell" id="book">
-    <div class="panel">
-      <h2>See how Your Bourse fits your brokerage.</h2>
-      <p>Tell us about your current setup and priorities. We'll show you the relevant capabilities
-         and discuss pricing and migration. Pick a time below.</p>
-      <div class="terms">
-        <div><strong>30-day free trial</strong> Platform and volume fees waived during the migration
-             and testing period, from 30 days.</div>
-        <div><strong>Tiered volume rates</strong> Pricing starts at $1 per million and reduces as
-             trading volumes grow.</div>
-      </div>
-
-      <!-- ==========================================================
-           BOOKING WIDGET
-           Interim: Kristina's Google appointment schedule.
-           Replace this whole <div class="cal"> block with the Zcal
-           Round Robin JavaScript embed once the sales team link exists.
-           ========================================================== -->
-      <div class="cal">
-        <iframe
-          src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0tAm4CgW3Hq6up_zC-PsKx2Z_E0cGma3QYSmZfjGzT5BbZy07UF5NkrTVs1E4E5xgrzleRK2XT?gv=true"
-          title="Book a demo with Your Bourse"
-          loading="lazy"></iframe>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="sec shell quotes-sec">
-    <div class="quotes">
-        <figure class="quote">
-          <div class="quote__stars" aria-label="Five out of five">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <blockquote>Your Bourse has consistently demonstrated exceptional professionalism, reliability, and deep expertise in FX/CFD technology. Their solutions have enabled us to enhance execution quality, reduce technology costs, and centralize risk management and reporting workflows.</blockquote>
-          <figcaption>
-            <img src="assets/quotes/nick.webp" alt="" width="46" height="46" loading="lazy" decoding="async">
-            <span><strong>Nick Cooke</strong><em>Founder and Group CEO at Taurex</em></span>
-          </figcaption>
-        </figure>
-        <figure class="quote">
-          <div class="quote__stars" aria-label="Five out of five">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <blockquote>They helped me improve execution speed, reliability, and overall risk management by providing a stable and efficient platform. Their support and flexibility made a real difference to my trading operations.</blockquote>
-          <figcaption>
-            <img src="assets/quotes/trevor.webp" alt="" width="46" height="46" loading="lazy" decoding="async">
-            <span><strong>Trevor Barwell</strong><em>CEO at JT Markets</em></span>
-          </figcaption>
-        </figure>
-        <figure class="quote">
-          <div class="quote__stars" aria-label="Five out of five">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <blockquote>Reliability has never been an issue, which is the most important part. What truly stands out is your support &mdash; always reachable, responsive, and always willing to provide solutions for our custom and sometimes very complex needs.</blockquote>
-          <figcaption>
-            <img src="assets/quotes/toms.webp" alt="" width="46" height="46" loading="lazy" decoding="async">
-            <span><strong>Toms Deinats</strong><em>Head of IT at Lucror Capital Markets</em></span>
-          </figcaption>
-        </figure>
-    </div>
-  </section>
-
-  <section class="sec shell trusted">
-    <h2>Trusted by established brokers</h2>
-    <ul>
-        <li><img src="assets/logos/axi-prime.webp" alt="Axi Prime" width="130" height="30" loading="lazy" decoding="async"></li>
-        <li><img src="assets/logos/admirals.webp" alt="Admirals" width="130" height="30" loading="lazy" decoding="async"></li>
-        <li><img src="assets/logos/easymarkets.webp" alt="easyMarkets" width="130" height="30" loading="lazy" decoding="async"></li>
-        <li><img src="assets/logos/infinox.webp" alt="INFINOX" width="130" height="30" loading="lazy" decoding="async"></li>
-        <li><img src="assets/logos/fp-markets.webp" alt="FP Markets" width="130" height="30" loading="lazy" decoding="async"></li>
-        <li><img src="assets/logos/taurex.webp" alt="Taurex" width="130" height="30" loading="lazy" decoding="async"></li>
-        <li><img src="assets/logos/the5ers.webp" alt="The 5%ers" width="130" height="30" loading="lazy" decoding="async"></li>
-        <li><img src="assets/logos/advanced-markets.webp" alt="Advanced Markets" width="130" height="30" loading="lazy" decoding="async"></li>
-        <li><img src="assets/logos/blueberry-funded.webp" alt="Blueberry Funded" width="130" height="30" loading="lazy" decoding="async"></li>
-        <li><img src="assets/logos/capital-index.webp" alt="Capital Index" width="130" height="30" loading="lazy" decoding="async"></li>
-        <li><img src="assets/logos/century.webp" alt="Century Financial" width="130" height="30" loading="lazy" decoding="async"></li>
-        <li><img src="assets/logos/cms-prime.webp" alt="CMS Prime" width="130" height="30" loading="lazy" decoding="async"></li>
-        <li><img src="assets/logos/finalto.webp" alt="Finalto" width="130" height="30" loading="lazy" decoding="async"></li>
-        <li><img src="assets/logos/fxprimus.webp" alt="FXPRIMUS" width="130" height="30" loading="lazy" decoding="async"></li>
-        <li><img src="assets/logos/mas.webp" alt="MAS" width="130" height="30" loading="lazy" decoding="async"></li>
-    </ul>
-  </section>
 
   <hr class="rule">
 
@@ -672,26 +622,12 @@ a:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
   <section class="sec shell">
     <div class="sec-head">
       <h2>Your P&amp;L <b>Control Center.</b></h2>
-      <p>Spreads, markups and execution data in one place, with historical reporting and business
-         intelligence on the same data.</p>
+      <p>Analyse spreads, markups and execution data to understand their contribution to your
+         P&amp;L. Use client-flow analysis to inform routing and A-book/B-book allocation.</p>
     </div>
-    <div class="console" aria-label="Your Bourse reporting view">
-      <div class="console__kpis">
-        <div class="kpi"><span>Number of trades</span><b data-to="328591" data-dp="0">0</b></div>
-        <div class="kpi"><span>Volume notional, USD</span><b data-to="7073421933.59" data-dp="2">0</b></div>
-        <div class="kpi"><span>Total markup, USD</span><b data-to="116351.13" data-dp="2">0</b></div>
-        <div class="kpi"><span>Revenue per million, USD</span><b data-to="16.45" data-dp="2">0</b></div>
-      </div>
-      <div class="console__bar">
-        <div class="fld"><i>Servers</i><u>All</u></div>
-        <div class="fld"><i>Symbols</i><u>All</u></div>
-        <div class="fld"><i>Hedging type</i><u>Any</u></div>
-        <div class="btns"><span>Group by Group</span><span>Export</span><span class="on">Run</span></div>
-      </div>
-      <div class="console__cols">
-        <span>Group</span><span>Trades</span><span>Volume, lots</span><span>Volume notional</span>
-        <span>Total markup</span><span>Rev / million</span><span>Bid/ask markup</span>
-      </div>
+    <div class="shot" id="shot">
+      <img src="assets/platform.webp" alt="The Your Bourse platform: trade blotter with filters, market sentiment by symbol and biggest trading volumes." width="1500" height="893" loading="lazy" decoding="async">
+      <span class="shot__sheen" aria-hidden="true"></span>
     </div>
   </section>
 
@@ -727,11 +663,84 @@ a:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
     </ul>
   </section>
 
-  <section class="sec shell closing">
-    <h2>Ready to see it?</h2>
-    <p>A short call to walk through the setup and how Your Bourse fits your brokerage.</p>
-    <p class="cta-wrap"><a class="cta" href="#book">Book a demo</a></p>
+  <section class="sec shell quotes-sec">
+    <div class="quotes">
+        <figure class="quote">
+          <div class="quote__stars" aria-label="Five out of five">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>Your Bourse has consistently demonstrated exceptional professionalism, reliability, and deep expertise in FX/CFD technology. Their solutions have enabled us to enhance execution quality, reduce technology costs, and centralize risk management and reporting workflows.</blockquote>
+          <figcaption>
+            <img src="assets/quotes/nick.webp" alt="" width="46" height="46" loading="lazy" decoding="async">
+            <span><strong>Nick Cooke</strong><em>Founder and Group CEO at Taurex</em></span>
+          </figcaption>
+        </figure>
+        <figure class="quote">
+          <div class="quote__stars" aria-label="Five out of five">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>They helped me improve execution speed, reliability, and overall risk management by providing a stable and efficient platform. Their support and flexibility made a real difference to my trading operations.</blockquote>
+          <figcaption>
+            <img src="assets/quotes/trevor.webp" alt="" width="46" height="46" loading="lazy" decoding="async">
+            <span><strong>Trevor Barwell</strong><em>CEO at JT Markets</em></span>
+          </figcaption>
+        </figure>
+        <figure class="quote">
+          <div class="quote__stars" aria-label="Five out of five">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>Reliability has never been an issue, which is the most important part. What truly stands out is your support &mdash; always reachable, responsive, and always willing to provide solutions for our custom and sometimes very complex needs.</blockquote>
+          <figcaption>
+            <img src="assets/quotes/toms.webp" alt="" width="46" height="46" loading="lazy" decoding="async">
+            <span><strong>Toms Deinats</strong><em>Head of IT at Lucror Capital Markets</em></span>
+          </figcaption>
+        </figure>
+    </div>
   </section>
+
+  <section class="sec shell trusted">
+    <h2>Trusted by established brokers</h2>
+    <ul>
+        <li><img src="assets/logos/axi-prime.webp" alt="Axi Prime" width="130" height="30" loading="lazy" decoding="async"></li>
+        <li><img src="assets/logos/admirals.webp" alt="Admirals" width="130" height="30" loading="lazy" decoding="async"></li>
+        <li><img src="assets/logos/easymarkets.webp" alt="easyMarkets" width="130" height="30" loading="lazy" decoding="async"></li>
+        <li><img src="assets/logos/infinox.webp" alt="INFINOX" width="130" height="30" loading="lazy" decoding="async"></li>
+        <li><img src="assets/logos/fp-markets.webp" alt="FP Markets" width="130" height="30" loading="lazy" decoding="async"></li>
+        <li><img src="assets/logos/taurex.webp" alt="Taurex" width="130" height="30" loading="lazy" decoding="async"></li>
+        <li><img src="assets/logos/the5ers.webp" alt="The 5%ers" width="130" height="30" loading="lazy" decoding="async"></li>
+        <li><img src="assets/logos/advanced-markets.webp" alt="Advanced Markets" width="130" height="30" loading="lazy" decoding="async"></li>
+        <li><img src="assets/logos/blueberry-funded.webp" alt="Blueberry Funded" width="130" height="30" loading="lazy" decoding="async"></li>
+        <li><img src="assets/logos/capital-index.webp" alt="Capital Index" width="130" height="30" loading="lazy" decoding="async"></li>
+        <li><img src="assets/logos/century.webp" alt="Century Financial" width="130" height="30" loading="lazy" decoding="async"></li>
+        <li><img src="assets/logos/cms-prime.webp" alt="CMS Prime" width="130" height="30" loading="lazy" decoding="async"></li>
+        <li><img src="assets/logos/finalto.webp" alt="Finalto" width="130" height="30" loading="lazy" decoding="async"></li>
+        <li><img src="assets/logos/fxprimus.webp" alt="FXPRIMUS" width="130" height="30" loading="lazy" decoding="async"></li>
+        <li><img src="assets/logos/mas.webp" alt="MAS" width="130" height="30" loading="lazy" decoding="async"></li>
+    </ul>
+  </section>
+
+  <section class="book shell" id="book">
+    <div class="panel">
+      <h2>See how Your Bourse fits your brokerage.</h2>
+      <p>Tell us about your current setup and priorities. We'll show you the relevant capabilities
+         and discuss pricing and migration. Pick a time below.</p>
+      <div class="terms">
+        <div><strong>30-day free trial</strong> Platform and volume fees waived during the migration
+             and testing period, from 30 days.</div>
+        <div><strong>Tiered volume rates</strong> Pricing starts at $1 per million and reduces as
+             trading volumes grow.</div>
+      </div>
+
+      <!-- ==========================================================
+           BOOKING WIDGET
+           Interim: Kristina's Google appointment schedule.
+           Replace this whole <div class="cal"> block with the Zcal
+           Round Robin JavaScript embed once the sales team link exists.
+           ========================================================== -->
+      <div class="cal">
+        <iframe
+          src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0tAm4CgW3Hq6up_zC-PsKx2Z_E0cGma3QYSmZfjGzT5BbZy07UF5NkrTVs1E4E5xgrzleRK2XT?gv=true"
+          title="Book a demo with Your Bourse"
+          loading="lazy"></iframe>
+      </div>
+
+    </div>
+  </section>
+
 </main>
 
 <a class="sticky-cta" href="#book">Book a demo</a>
@@ -795,6 +804,17 @@ var EXPOS = {
     });
   }, { threshold: 0.4 });
   els.forEach(function (e) { io.observe(e); });
+})();
+(function () {
+  var shot = document.getElementById("shot");
+  if (!shot) return;
+  if (!("IntersectionObserver" in window)) { shot.classList.add("is-in"); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) { en.target.classList.add("is-in"); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.25 });
+  io.observe(shot);
 })();
 </script>
 </body>
